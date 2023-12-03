@@ -1,0 +1,166 @@
+body {
+    font-family: "Open Sans", sans-serif;
+    color: #444444;
+    background-color: #E0F4FF;
+}
+
+#greetings {
+    font-size: large;
+    margin: 0 auto;
+    margin-top: 20px;
+    text-align: center;
+    background-color: #FFEED9;
+    border-radius: 10px;
+    padding: 5px;
+    max-width: 250px;
+}
+
+/* NAVBAR */
+#nav-bar {
+    margin: 0 auto;
+    max-width: 100%;
+    background-color: #39A7FF;
+    padding: 10px;
+    color: #E0F4FF;
+    text-align: center;
+    border-radius: 5px;
+    box-shadow: 0 5px 5px rgb(135, 196, 255);
+    transition: color 0.3s ease-in;
+
+}
+
+#nav-bar a {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color: #FFEED9;
+    text-decoration: none;
+    margin: 0 24px;
+    font-weight: bold;
+}
+
+#nav-bar a.active {
+    background-color: #E0F4FF;
+    color: #444444;
+    padding: 5px 15px;
+    border-radius: 20px;
+}
+
+/* NAVBAR END */
+
+/* Main Content */
+.product-list {
+    /* background-color: gray; */
+    margin: 0 auto;
+    max-width: fit-content;
+    text-align: center;
+    color: black;
+    font-weight: bold;
+}
+
+.main-content {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 60px;
+}
+
+.product-container {
+    width: 250px;
+    margin: 10px auto;
+    margin-top: 10px;
+    border-radius: 10px;
+
+    background-color: #FFEED9;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: left;
+}
+
+.product-image {
+    align-items: center;
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    margin-bottom: 10px;
+}
+
+.product-name {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.product-price {
+    font-size: 16px;
+    font-weight: bold;
+    color: orangered;
+}
+
+.category-product {
+    font-size: 18px;
+    border: #444444;
+    background-color: #FFEED9;
+    border-radius: 10px;
+    padding: 5px;
+    padding-left: 10px;
+}
+
+.scroll-container {
+    width: 100%;
+    white-space: nowrap;
+    overflow-x: auto;
+}
+
+.scroll-item {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.home-etalase {
+    margin-top: 75px;
+    margin-bottom: 10px;
+}
+
+.content-contact {
+    border-radius: 20px;
+    margin-top: 20px;
+    margin-bottom: 80px;
+    background-color: #FFEED9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 650px;
+}
+
+.content-contact img {
+    max-width: 100%;
+}
+
+/* End Main Conten */
+
+.whatsapp-btn {
+    position: fixed;
+    bottom: 75px;
+    right: 20px;
+    border-radius: 50%;
+    padding: 10px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.whatsapp-btn:hover {
+    background-color: #128C7E;
+}
+
+.bottom-page {
+    margin-top: 20px;
+    bottom: 0;
+    height: 20px;
+    font-size: 14px;
+    left: 0;
+    width: 100%;
+    background-color: #39A7FF;
+    padding: 5px;
+    padding-bottom: 40px;
+    text-align: center;
+    color: white;
+    position: fixed;
+}
