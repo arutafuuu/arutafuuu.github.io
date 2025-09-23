@@ -4,291 +4,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Habede Woiii</title>
-    <style>
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            background: linear-gradient(to top, #ff9a9e, #fad0c4);
-            overflow: hidden;
-            margin: 0;
-            font-family: 'Comic Sans MS', cursive, sans-serif;
-            color: #333;
-        }
-
-        .container {
-            position: relative;
-            text-align: center;
-            perspective: 1000px;
-            z-index: 1;
-        }
-
-        .cake-stand {
-            width: 250px;
-            height: 30px;
-            background-color: #f0c27b;
-            border-radius: 0 0 100px 100px;
-            margin: 0 auto;
-            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-            position: relative;
-            z-index: 2;
-        }
-
-        .cake-layer {
-            width: 200px;
-            height: 70px;
-            background-color: #f7a7a7;
-            border-radius: 100px / 30px;
-            margin: -80px auto 0;
-            position: relative;
-            box-shadow: 0 -5px 10px rgba(0, 0, 0, 0.2);
-            z-index: 3;
-        }
-
-        .cake-layer::before {
-            content: '';
-            position: absolute;
-            top: 5px;
-            left: 5%;
-            width: 90%;
-            height: 60px;
-            background-color: #fff;
-            border-radius: 90px / 25px;
-        }
-
-        .cake-layer.top {
-            width: 150px;
-            height: 60px;
-            background-color: #ffcccc;
-            border-radius: 80px / 25px;
-            margin-top: -100px;
-            z-index: 4;
-        }
-
-        .cake-layer.top::before {
-            height: 50px;
-            border-radius: 70px / 20px;
-        }
-
-        .candle {
-            position: absolute;
-            width: 8px;
-            height: 30px;
-            background-color: #f7b731;
-            border-radius: 2px 2px 0 0;
-            top: -25px;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 5;
-            transition: all 0.2s ease-in-out;
-        }
-
-        .candle.lit {
-            background-color: #f7b731;
-        }
-
-        .flame {
-            position: absolute;
-            width: 10px;
-            height: 15px;
-            background-color: orange;
-            border-radius: 50%;
-            top: -15px;
-            left: -1px;
-            box-shadow: 0 0 10px 2px orange, 0 0 20px 5px yellow;
-            animation: flicker 0.5s infinite alternate;
-            transform-origin: bottom;
-            transition: opacity 0.3s ease-out;
-        }
-
-        .flame.off {
-            opacity: 0;
-        }
-
-        @keyframes flicker {
-            0% {
-                transform: scaleY(1);
-                box-shadow: 0 0 10px 2px orange, 0 0 20px 5px yellow;
-            }
-
-            100% {
-                transform: scaleY(0.9);
-                box-shadow: 0 0 8px 1px orange, 0 0 15px 3px yellow;
-            }
-        }
-
-        .button-container {
-            margin-top: 100px;
-        }
-
-        .blow-button {
-            padding: 15px 30px;
-            font-size: 1.2em;
-            background-color: #ff6b6b;
-            color: white;
-            border: none;
-            border-radius: 30px;
-            cursor: pointer;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-            transition: all 0.3s ease;
-            outline: none;
-        }
-
-        .blow-button:hover {
-            background-color: #ff4757;
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-        }
-
-        .blow-button:active {
-            transform: translateY(1px);
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
-        }
-
-        .balloon {
-            position: absolute;
-            width: 60px;
-            height: 70px;
-            background-color: #ffccff;
-            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
-            opacity: 0;
-            animation: floatUp 8s forwards ease-out;
-            pointer-events: none;
-            z-index: 5;
-        }
-
-        .balloon::before {
-            content: '';
-            position: absolute;
-            width: 2px;
-            height: 30px;
-            background-color: #ccc;
-            bottom: -30px;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-
-        .balloon.blue {
-            background-color: #a3daff;
-        }
-
-        .balloon.green {
-            background-color: #a3ffad;
-        }
-
-        .balloon.yellow {
-            background-color: #fffba3;
-        }
-
-        @keyframes floatUp {
-            0% {
-                transform: translateY(0) scale(0);
-                opacity: 0;
-            }
-
-            10% {
-                transform: translateY(0) scale(1);
-                opacity: 1;
-            }
-
-            100% {
-                transform: translateY(-1000px) scale(1.2);
-                opacity: 0;
-            }
-        }
-
-        .message {
-            margin-top: 20px;
-            font-size: 1.5em;
-            font-weight: bold;
-            color: #ff6b6b;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.5s ease;
-        }
-
-        .message.show {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    </style>
+    <title>Welcome!</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 </head>
 
 <body>
-    <div class="container">
-        <div class="cake-stand"></div>
-        <div class="cake-layer"></div>
-        <div class="cake-layer top">
-            <div class="candle" id="candle">
-                <div class="flame" id="flame"></div>
-            </div>
-        </div>
-
-        <div class="button-container">
-            <button class="blow-button" id="blowButton">Tiup Lilin!</button>
-        </div>
-
-        <div class="message" id="message">Selamat Bertambah Tua!!!</div>
+    <!-- <div class="position-relative"> -->
+    <div class="position-absolute top-50 start-50 translate-middle">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Projects</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1.</td>
+                    <td><a href="/invits-master/">invits-master</a></td>
+                </tr>
+                <tr>
+                    <td>2.</td>
+                    <td><a href="/mr-mrs-1.0.0/">mr-mrs</a></td>
+                </tr>
+                <tr>
+                    <td>3.</td>
+                    <td> <a href="/sunshine-master/">sunshine-master</a></td>
+                </tr>
+                <tr>
+                    <td>4.</td>
+                    <td><a href="/wed-master/">wed-master</a></td>
+                </tr>
+                <tr>
+                    <td>5.</td>
+                    <td><a href="/wed-v1/">wed-v1</a></td>
+                </tr>
+            </tbody>
+        </table>
     </div>
-
-    <audio id="birthdaySong" src="bright-fun-happy-birthday-392787.mp3" preload="auto"></audio>
-
-    <script>
-        const blowButton = document.getElementById('blowButton');
-        const flame = document.getElementById('flame');
-        const candle = document.getElementById('candle');
-        const birthdaySong = document.getElementById('birthdaySong');
-        const message = document.getElementById('message');
-
-        let isLit = true;
-
-        document.body.addEventListener('click', () => {
-            if (birthdaySong.paused) {
-                birthdaySong.play();
-            }
-        }, { once: true });
-
-        blowButton.addEventListener('click', () => {
-            if (isLit) {
-                flame.classList.add('off');
-                candle.classList.remove('lit');
-                blowButton.textContent = "Terima Kasih!";
-                blowButton.disabled = true;
-                isLit = false;
-                
-                startBalloonStream();
-                
-                showMessage();
-            }
-        });
-
-        function createBalloon() {
-            const colors = ['#ffccff', '#a3daff', '#a3ffad', '#fffba3', '#ffabab'];
-            const balloon = document.createElement('div');
-            balloon.classList.add('balloon');
-            balloon.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-            balloon.style.left = `${Math.random() * 100}vw`;
-            balloon.style.top = `110vh`;
-            document.body.appendChild(balloon);
-            setTimeout(() => {
-                balloon.remove();
-            }, 10000);
-        }
-        function startBalloonStream() {
-            setInterval(createBalloon, 400);
-        }
-
-
-        function showMessage() {
-            setTimeout(() => {
-                message.classList.add('show');
-            }, 1000);
-        }
-        flame.classList.remove('off');
-        candle.classList.add('lit');
-    </script>
+    <!-- </div> -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
 </body>
 
 </html>
