@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Wedding | Template </title>
+    <title>Undangan | Ibnu & Wahyuni</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="manifest" href="site.webmanifest">
@@ -78,7 +78,7 @@
     <div class="d-flex justify-content-center align-items-center h-100">
         <div class="container-box">
             <h1>Kepada Yth.</h1>
-            <p><strong>Tuan & Ny.</strong></p>
+            <p><strong><span id="name"></span><span id="ny"></span></strong></p>
             <p>Di -</p>
             <p><strong>Tempat</strong></p>
             <button onclick="playAudioAndRedirect()" class="btn btn-sm btn-lg">Lihat Undangan</button>
@@ -90,6 +90,23 @@
             const audio = document.getElementById("welcomeAudio");
             audio.play();
             window.location.href = "home.html";
+        }
+
+        // Ambil parameter dari URL
+        const params = new URLSearchParams(window.location.search);
+        const name = params.get('name');
+
+        const greetingElement = document.getElementById('name');
+        if (name) {
+            greetingElement.textContent = `${name}`;
+        } else {
+            greetingElement.textContent = 'Tuan';
+        }
+
+        const ny = params.get('ny');
+
+        if (ny == true) {
+            greetingElement.textContent += ` & Ny.`;
         }
     </script>
 
