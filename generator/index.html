@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generator Undangan Pernikahan</title>
+    <style>
+        /* CSS: Tampilan Web */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f7f6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 500px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 25px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #555;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            box-sizing: border-box; /* Agar padding tidak merusak lebar */
+            font-size: 16px;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .btn-copy {
+            background-color: #008CBA;
+            margin-top: 10px;
+        }
+
+        .btn-copy:hover {
+            background-color: #007bb5;
+        }
+
+        .result-area {
+            margin-top: 25px;
+            border-top: 2px dashed #ddd;
+            padding-top: 20px;
+            display: none; /* Disembunyikan sampai tombol ditekan */
+        }
+
+        textarea {
+            width: 100%;
+            height: 300px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-family: monospace;
+            resize: none;
+            background-color: #fafafa;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>💌 Generator Undangan</h2>
+
+        <div class="form-group">
+            <label for="penerima">Nama Penerima (Tamu):</label>
+            <input type="text" id="penerima" placeholder="Contoh: Budi Santoso">
+        </div>
+
+        <div class="form-group">
+            <label for="pengirim">Nama Pengirim (Mempelai):</label>
+            <input type="text" id="pengirim" placeholder="Contoh: Uni & Innu">
+        </div>
+
+        <button onclick="buatUndangan()">Buat Pesan</button>
+
+        <div class="result-area" id="hasilArea">
+            <label>Hasil Pesan:</label>
+            <textarea id="outputPesan" readonly></textarea>
+            <button class="btn-copy" onclick="salinPesan()">Salin ke Clipboard</button>
+        </div>
+    </div>
+
+    <script>
+        /* JavaScript: Logika Program */
+        function buatUndangan() {
+            // 1. Ambil nilai dari input
+            const namaPenerima = document.getElementById('penerima').value.trim();
+            const namaPengirim = document.getElementById('pengirim').value.trim();
+
+            // Validasi: Pastikan input tidak kosong
+            if (namaPenerima === "" || namaPengirim === "") {
+                alert("Mohon isi Nama Penerima dan Nama Pengirim terlebih dahulu.");
+                return;
+            }
+
+            // 2. Format URL (Mengubah spasi menjadi %20)
+            // encodeURIComponent akan otomatis mengubah spasi jadi %20 dan karakter spesial lain agar aman
+            const namaDiLink = encodeURIComponent(namaPenerima);
+
+            // 3. Template Pesan
+            const templatePesan = `Kepada Yth.
+Bapak/Ibu/Saudara/i
+*${namaPenerima}*
+
+_______
+
+Assalamualaikum Warahmatullahi Wabarakatuh
+
+Tanpa mengurangi rasa hormat, perkenankan kami mengundang Bapak/Ibu/Saudara/i, teman sekaligus sahabat, untuk menghadiri acara pernikahan kami.
+
+Berikut link undangan kami, untuk info lengkap dari acara, bisa kunjungi :
+
+https://invite.truelove.my.id/uni-innu/?to=${namaDiLink}
+
+Merupakan suatu kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan untuk hadir dan memberikan doa restu.
+
+Wassalamualaikum Warahmatullahi Wabarakatuh
+
+Terima Kasih
+
+Hormat kami,
+${namaPengirim}
+________`;
+
+            // 4. Tampilkan Hasil
+            document.getElementById('outputPesan').value = templatePesan;
+            document.getElementById('hasilArea').style.display = 'block';
+        }
+
+        function salinPesan() {
+            // Logika menyalin teks
+            const copyText = document.getElementById("outputPesan");
+
+            // Pilih text
+            copyText.select();
+            copyText.setSelectionRange(0, 99999); // Untuk perangkat mobile
+
+            // Salin ke clipboard
+            navigator.clipboard.writeText(copyText.value).then(() => {
+                alert("Pesan berhasil disalin! Siap untuk dikirim.");
+            }).catch(err => {
+                console.error('Gagal menyalin: ', err);
+            });
+        }
+    </script>
+</body>
+</html>
