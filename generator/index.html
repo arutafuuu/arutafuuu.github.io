@@ -43,13 +43,22 @@
             color: #555;
         }
 
-        input[type="text"] {
+        input[type="text"], select {
             width: 100%;
             padding: 10px;
             border: 1px solid #ddd;
             border-radius: 6px;
-            box-sizing: border-box; /* Agar padding tidak merusak lebar */
+            box-sizing: border-box;
             font-size: 16px;
+            background-color: #fff;
+        }
+
+        /* Highlight untuk dropdown link agar terlihat beda */
+        #pilihanLink {
+            background-color: #e8f0fe;
+            border-color: #b3d7ff;
+            color: #1a73e8;
+            font-weight: 600;
         }
 
         button {
@@ -82,7 +91,7 @@
             margin-top: 25px;
             border-top: 2px dashed #ddd;
             padding-top: 20px;
-            display: none; /* Disembunyikan sampai tombol ditekan */
+            display: none;
         }
 
         textarea {
@@ -104,8 +113,24 @@
         <h2>💌 Generator Undangan</h2>
 
         <div class="form-group">
+            <label for="pilihanLink">Pilih Website Undangan:</label>
+            <select id="pilihanLink">
+                <option value="github">Link Baru (arutafuuu.github.io)</option>
+                <option value="truelove">Link Lama (invite.truelove.my.id)</option>
+            </select>
+        </div>
+
+        <div class="form-group">
             <label for="penerima">Nama Penerima (Tamu):</label>
             <input type="text" id="penerima" placeholder="Contoh: Budi Santoso">
+        </div>
+
+        <div class="form-group">
+            <label for="opsiPartner">Format Tamu:</label>
+            <select id="opsiPartner">
+                <option value="0">Sendiri (Tanpa & Ny)</option>
+                <option value="1">Berpasangan (Tambah & Ny)</option>
+            </select>
         </div>
 
         <div class="form-group">
@@ -123,21 +148,35 @@
     </div>
 
     <script>
-        /* JavaScript: Logika Program */
         function buatUndangan() {
-            // 1. Ambil nilai dari input
+            // 1. Ambil nilai
+            const jenisLink = document.getElementById('pilihanLink').value;
             const namaPenerima = document.getElementById('penerima').value.trim();
             const namaPengirim = document.getElementById('pengirim').value.trim();
+            const opsiPartner = document.getElementById('opsiPartner').value;
 
-            // Validasi: Pastikan input tidak kosong
+            // Validasi
             if (namaPenerima === "" || namaPengirim === "") {
-                alert("Mohon isi Nama Penerima dan Nama Pengirim terlebih dahulu.");
+                alert("Mohon isi Nama Penerima dan Nama Pengirim.");
                 return;
             }
 
-            // 2. Format URL (Mengubah spasi menjadi %20)
-            // encodeURIComponent akan otomatis mengubah spasi jadi %20 dan karakter spesial lain agar aman
+            // Encode nama agar aman di URL (spasi jadi %20)
             const namaDiLink = encodeURIComponent(namaPenerima);
+            
+            let linkUndangan = "";
+
+            // 2. LOGIKA PEMILIHAN LINK
+            if (jenisLink === "truelove") {
+                // Format Link Lama (invite.truelove.my.id)
+                // Biasanya format lama pakai parameter "?to="
+                linkUndangan = `https://invite.truelove.my.id/uni-innu/?to=${namaDiLink}`;
+            
+            } else {
+                // Format Link Baru (arutafuuu.github.io)
+                // Menggunakan parameter "?name=" dan "&ny="
+                linkUndangan = `https://arutafuuu.github.io/ibnu-uni/?name=${namaDiLink}&ny=${opsiPartner}`;
+            }
 
             // 3. Template Pesan
             const templatePesan = `Kepada Yth.
@@ -152,7 +191,7 @@ Tanpa mengurangi rasa hormat, perkenankan kami mengundang Bapak/Ibu/Saudara/i, t
 
 Berikut link undangan kami, untuk info lengkap dari acara, bisa kunjungi :
 
-https://invite.truelove.my.id/uni-innu/?to=${namaDiLink}
+${linkUndangan}
 
 Merupakan suatu kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan untuk hadir dan memberikan doa restu.
 
@@ -164,24 +203,17 @@ Hormat kami,
 ${namaPengirim}
 ________`;
 
-            // 4. Tampilkan Hasil
+            // 4. Output
             document.getElementById('outputPesan').value = templatePesan;
             document.getElementById('hasilArea').style.display = 'block';
         }
 
         function salinPesan() {
-            // Logika menyalin teks
             const copyText = document.getElementById("outputPesan");
-
-            // Pilih text
             copyText.select();
-            copyText.setSelectionRange(0, 99999); // Untuk perangkat mobile
-
-            // Salin ke clipboard
+            copyText.setSelectionRange(0, 99999); 
             navigator.clipboard.writeText(copyText.value).then(() => {
-                alert("Pesan berhasil disalin! Siap untuk dikirim.");
-            }).catch(err => {
-                console.error('Gagal menyalin: ', err);
+                alert("Pesan berhasil disalin!");
             });
         }
     </script>
