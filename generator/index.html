@@ -129,7 +129,8 @@
             <label for="opsiPartner">Format Tamu:</label>
             <select id="opsiPartner">
                 <option value="0">Sendiri (Tanpa & Ny)</option>
-                <option value="1">Berpasangan (Tambah & Ny)</option>
+                <option value="1">Dan Nyonya (Tambah & Ny)</option>
+                <option value="2">Dan Tuan (Tambah & Tn)</option>
             </select>
         </div>
 
@@ -178,10 +179,12 @@
                 linkUndangan = `https://arutafuuu.github.io/ibnu-uni/?name=${namaDiLink}&ny=${opsiPartner}`;
             }
 
+            const pasangan = opsiPartner == 1 ? " & Ny." : opsiPartner == 2 ? " & Tn." : "";
+
             // 3. Template Pesan
             const templatePesan = `Kepada Yth.
 Bapak/Ibu/Saudara/i
-*${namaPenerima}*
+*${namaPenerima}${pasangan}*
 
 _______
 

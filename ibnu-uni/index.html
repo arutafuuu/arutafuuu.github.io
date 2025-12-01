@@ -105,8 +105,10 @@
 
         const ny = params.get('ny');
 
-        if (ny == true) {
+        if (ny == 1) {
             greetingElement.textContent += ` & Ny.`;
+        } else if (ny == 2) {
+            greetingElement.textContent += ` & Tn.`;
         }
     </script>
 
