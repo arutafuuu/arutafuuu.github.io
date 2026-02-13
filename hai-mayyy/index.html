@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Untuk mayyyy</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap"
+        rel="stylesheet">
+
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'soft-pink': '#ffe4e6',
+                        'deep-pink': '#fda4af',
+                        'cream': '#fffdd0',
+                        'rose-gold': '#e11d48'
+                    },
+                    fontFamily: {
+                        'script': ['"Great Vibes"', 'cursive'],
+                        'body': ['"Poppins"', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background: linear-gradient(135deg, #fdfbf7 0%, #ffe4e6 100%);
+            overflow: hidden;
+        }
+
+        /* Glassmorphism Effect */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            box-shadow: 0 8px 32px 0 rgba(226, 168, 188, 0.37);
+        }
+
+        /* Floating Hearts Animation Background */
+        .hearts-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .floating-heart {
+            position: absolute;
+            bottom: -100px;
+            color: rgba(253, 164, 175, 0.4);
+            font-size: 2rem;
+            animation: floatUp 10s linear infinite;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0;
+            }
+
+            20% {
+                opacity: 0.8;
+            }
+
+            100% {
+                transform: translateY(-120vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .heart-beat {
+            animation: beat 1s infinite alternate;
+        }
+
+        @keyframes beat {
+            to {
+                transform: scale(1.1);
+            }
+        }
+
+        /* PERBAIKAN UTAMA: Menambahkan !important agar fungsi sembunyi lebih kuat dari Flexbox */
+        .hidden-section {
+            display: none !important;
+            visibility: hidden !important;
+        }
+    </style>
+</head>
+
+<body class="h-screen w-full flex items-center justify-center font-body text-gray-700 select-none">
+
+    <audio id="bg-music" loop>
+        <source src="https://www.bensound.com/bensound-music/bensound-tenderness.mp3" type="audio/mpeg">
+    </audio>
+
+    <div class="hearts-bg" id="hearts-container"></div>
+
+    <div class="relative w-full max-w-md p-4">
+
+        <div id="page-welcome" class="glass-card rounded-3xl p-8 text-center animate__animated animate__fadeIn">
+            <div class="mb-4 text-5xl text-rose-gold animate__animated animate__heartBeat animate__infinite infinite">💌
+            </div>
+            <h1 class="text-3xl md:text-4xl font-script text-rose-gold mb-4">Alo Sayanggg...</h1>
+            <p class="text-sm md:text-base text-gray-600 mb-8 leading-relaxed">
+                Ada sesuatu spesial yang mau altap sampaikan ke mayyyy hari ini.
+            </p>
+            <button onclick="nextPage('page-welcome', 'page-message')"
+                class="bg-white/70 hover:bg-white text-rose-gold font-semibold py-3 px-8 rounded-full shadow-lg transition-all duration-300 transform hover:scale-105 border border-pink-200">
+                Buka Pesan
+            </button>
+        </div>
+
+        <div id="page-message" class="hidden-section glass-card rounded-3xl p-8 text-center relative">
+            <div class="text-rose-gold text-6xl mb-4 heart-beat">❤️</div>
+            <h2 class="text-3xl font-script text-gray-800 mb-4">Untuk Nona Manis</h2>
+            <div class="text-sm md:text-base text-gray-600 space-y-3 leading-relaxed text-justify mb-8 px-2">
+                <p>
+                    Senang bet rasanya selama beberapa puluh hari belakangan ditemanis dengan kehadirannya mayyy. Rasanya kayak setiap hari selalu diwarnai dengan banyak warna
+                </p>
+                <p>Terima kasih yak mayyyy sudah sudah hadir... mudah-mudahan kedepannya akan tetap selalu.</p>
+            </div>
+            <button onclick="nextPage('page-message', 'page-ask')"
+                class="bg-gradient-to-r from-pink-400 to-rose-400 text-white font-semibold py-2 px-6 rounded-full shadow-md hover:shadow-xl transition-all duration-300">
+                Lanjut...
+            </button>
+        </div>
+
+        <div id="page-ask"
+            class="hidden-section glass-card rounded-3xl p-8 text-center min-h-[500px] flex flex-col justify-center items-center relative w-full overflow-hidden">
+            <h2 class="text-3xl md:text-4xl font-script text-rose-gold mb-12 leading-snug z-10">
+                Sama-sama terus yaaa sayanggg?
+            </h2>
+
+            <div class="flex flex-col md:flex-row items-center justify-center gap-4 w-full z-20">
+                <button id="btn-yes" onclick="finish()"
+                    class="w-full md:w-auto bg-rose-500 text-white font-bold py-3 px-10 rounded-full shadow-lg transform transition-all duration-300 hover:scale-110 hover:shadow-rose-500/50 mb-4 md:mb-0 z-20">
+                    MAU!!!
+                </button>
+
+                <button id="btn-no"
+                    class="w-full md:w-auto bg-gray-300 text-gray-600 font-semibold py-3 px-8 rounded-full shadow transition-all duration-100 z-30">
+                    Nda deh
+                </button>
+            </div>
+        </div>
+
+        <div id="page-final" class="hidden-section glass-card rounded-3xl p-8 text-center">
+            <h1 class="text-5xl font-script text-rose-gold mb-6 animate__animated animate__bounceIn">I Love You! 💖</h1>
+            <p class="text-gray-700 mb-8 text-lg">
+                Terima kasih yaaa sayanggg. Altapp akan terus usaha untuk bikin maya senyum yakkk.
+            </p>
+            <div class="text-6xl animate__animated animate__tada animate__infinite infinite">
+                🥰
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // --- Setup Background ---
+        const heartsContainer = document.getElementById('hearts-container');
+        const symbols = ['❤', '🌸', '✨', '💖'];
+
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('floating-heart');
+            heart.innerText = symbols[Math.floor(Math.random() * symbols.length)];
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = Math.random() * 3 + 7 + 's';
+            heart.style.fontSize = Math.random() * 1 + 1 + 'rem';
+            heartsContainer.appendChild(heart);
+            setTimeout(() => { heart.remove(); }, 10000);
+        }
+        setInterval(createHeart, 500);
+
+        // --- Navigation Logic ---
+        function nextPage(hideId, showId) {
+            const hideEl = document.getElementById(hideId);
+            const showEl = document.getElementById(showId);
+
+            // Play music
+            const audio = document.getElementById('bg-music');
+            if (hideId === 'page-welcome' && audio.paused) {
+                audio.volume = 0.5;
+                audio.play().catch(e => console.log("Audio autoplay blocked"));
+            }
+
+            // Animasi Keluar
+            hideEl.classList.add('animate__fadeOut');
+
+            // Tunggu animasi selesai baru tukar halaman
+            hideEl.addEventListener('animationend', () => {
+                hideEl.classList.add('hidden-section');
+                hideEl.classList.remove('animate__fadeOut');
+
+                // Munculkan halaman baru
+                showEl.classList.remove('hidden-section');
+                showEl.classList.add('animate__animated', 'animate__fadeInUp');
+            }, { once: true });
+        }
+
+        // --- Runaway Button Logic ---
+        const noBtn = document.getElementById('btn-no');
+        const pageAsk = document.getElementById('page-ask');
+
+        function moveButton() {
+            // 1. Ambil ukuran area kartu (pageAsk)
+            const containerRect = pageAsk.getBoundingClientRect();
+            const btnRect = noBtn.getBoundingClientRect();
+
+            // 2. Hitung batas aman agar tombol tidak keluar dari kartu
+            // Kurangi 20px agar tidak terlalu mepet pinggir
+            const maxWidth = containerRect.width - btnRect.width - 20;
+            const maxHeight = containerRect.height - btnRect.height - 20;
+
+            // 3. Acak posisi X dan Y
+            // Math.max(0, ...) memastikan tidak bernilai negatif
+            const randomX = Math.max(0, Math.floor(Math.random() * maxWidth));
+            const randomY = Math.max(0, Math.floor(Math.random() * maxHeight));
+
+            // 4. Ubah posisi tombol menjadi absolute (agar bisa 'terbang')
+            noBtn.style.position = 'absolute';
+            noBtn.style.transition = 'all 0.3s ease'; // Tambah animasi gerak
+
+            // 5. Terapkan koordinat baru
+            noBtn.style.left = randomX + 'px';
+            noBtn.style.top = randomY + 'px';
+
+            // Ubah warna tombol biar makin ngeselin (opsional)
+            noBtn.style.backgroundColor = '#fca5a5'; // Jadi agak merah muda
+            noBtn.style.color = 'white';
+        }
+
+        // Event untuk Desktop (Mouse)
+        noBtn.addEventListener('mouseenter', moveButton);
+
+        // Event untuk Mobile (Touch)
+        noBtn.addEventListener('touchstart', (e) => {
+            e.preventDefault(); // Mencegah tombol ditekan/klik
+            moveButton();
+        });
+
+        // Event tambahan klik (jaga-jaga kalau touchstart lolos)
+        noBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            moveButton();
+        });
+
+        // --- Finish Logic ---
+        function finish() {
+            nextPage('page-ask', 'page-final');
+
+            // Confetti Effect
+            const duration = 3000;
+            const end = Date.now() + duration;
+
+            (function frame() {
+                confetti({
+                    particleCount: 5,
+                    angle: 60,
+                    spread: 55,
+                    origin: { x: 0 },
+                    colors: ['#ff0000', '#ffa500', '#ff69b4']
+                });
+                confetti({
+                    particleCount: 5,
+                    angle: 120,
+                    spread: 55,
+                    origin: { x: 1 },
+                    colors: ['#ff0000', '#ffa500', '#ff69b4']
+                });
+
+                if (Date.now() < end) {
+                    requestAnimationFrame(frame);
+                }
+            }());
+        }
+    </script>
+</body>
+
+</html>
