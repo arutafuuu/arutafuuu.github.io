@@ -1,0 +1,38 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #070114; /* Deep dark purple-blue */
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-family: 'Arial', sans-serif;
+}
+
+#heart-container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.love-text {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    color: #ffb3c6; /* Light pink base color */
+    font-size: 14px;
+    font-weight: 700;
+    white-space: nowrap;
+    text-shadow: 
+        0 0 5px #ff4d88, 
+        0 0 10px #ff4d88, 
+        0 0 20px #ff0055, 
+        0 0 30px #ff0055;
+    transform-origin: center center;
+    will-change: transform;
+    opacity: 0.9;
+}
