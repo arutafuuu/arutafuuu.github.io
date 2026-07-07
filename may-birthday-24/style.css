@@ -1,0 +1,372 @@
+/* Global Styles & Variables */
+:root {
+    --bg-color: #FDFBF7; /* Warm Beige */
+    --primary: #F2C6C2; /* Soft Pink */
+    --secondary: #D4E0D6; /* Sage Green */
+    --text-main: #5A4A42; /* Dark Warm Brown */
+    --text-light: #7A6A62;
+    --card-bg: rgba(255, 255, 255, 0.6);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Quicksand', sans-serif;
+}
+
+body {
+    background-color: #e0dcd3; /* Darker outer background to frame the mobile view */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+/* App Container (Mobile-First Frame) */
+.app-container {
+    width: 100%;
+    max-width: 480px;
+    height: 100dvh; /* Dynamic viewport height for mobile */
+    background-color: var(--bg-color);
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* Scene Setup */
+.scene {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding: 30px 20px;
+    display: flex;
+    flex-direction: column;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 1s ease-in-out, visibility 1s;
+    z-index: 1;
+}
+
+.scene.active {
+    opacity: 1;
+    visibility: visible;
+    z-index: 10;
+}
+
+.scene.hidden-scene {
+    opacity: 0;
+    visibility: hidden;
+    z-index: 1;
+}
+
+.scene-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+}
+
+.flex-center {
+    justify-content: center;
+    gap: 40px;
+}
+
+/* Typography */
+.main-text {
+    font-size: 1.5rem;
+    color: var(--text-main);
+    line-height: 1.5;
+    font-weight: 700;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.highlight-text {
+    color: #e88d84;
+}
+
+/* Images & Characters */
+.image-wrapper {
+    width: 220px;
+    height: 220px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+}
+
+.sticker-img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    filter: drop-shadow(0 8px 16px rgba(0,0,0,0.1));
+}
+
+/* Buttons */
+.btn {
+    border: none;
+    padding: 15px 30px;
+    border-radius: 30px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.primary-btn {
+    background-color: var(--primary);
+    color: var(--text-main);
+}
+
+.primary-btn:hover, .primary-btn:active {
+    background-color: #e88d84;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(232, 141, 132, 0.3);
+}
+
+.secondary-btn {
+    background-color: var(--secondary);
+    color: var(--text-main);
+    align-self: flex-end;
+    margin-top: 20px;
+}
+
+.secondary-btn:hover, .secondary-btn:active {
+    background-color: #b0c2b3;
+    transform: translateY(-2px);
+}
+
+.ghost-btn {
+    background-color: transparent;
+    color: var(--text-light);
+    border: 2px dashed var(--primary);
+    font-size: 0.9rem;
+    padding: 10px 20px;
+    margin-top: auto;
+    margin-bottom: 20px;
+}
+
+/* Box Cards for Text */
+.box-card {
+    background: var(--card-bg);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 25px;
+    width: 100%;
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.03);
+}
+
+.lyric-text, .letter-text {
+    font-size: 1.1rem;
+    color: var(--text-main);
+    line-height: 1.6;
+    min-height: 80px; /* Pre-allocate space */
+}
+
+.letter-text {
+    min-height: 150px;
+}
+
+/* Audio Player Widget */
+.music-widget {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background: var(--card-bg);
+    padding: 15px 25px;
+    border-radius: 40px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    margin-bottom: 20px;
+}
+
+.vinyl {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: spin 3s linear infinite;
+}
+
+.vinyl-inner {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--primary);
+}
+
+.track-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.track-name {
+    font-weight: 700;
+    color: var(--text-main);
+    font-size: 1rem;
+}
+
+.track-artist {
+    font-size: 0.8rem;
+    color: var(--text-light);
+}
+
+/* Global Mute Button */
+.mute-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 100;
+    background: rgba(255,255,255,0.7);
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    color: var(--text-main);
+    transition: all 0.3s ease;
+}
+
+.mute-btn.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.feather.hidden {
+    display: none;
+}
+
+/* Modal */
+.modal-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(90, 74, 66, 0.4);
+    backdrop-filter: blur(5px);
+    z-index: 200;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 1;
+    transition: opacity 0.4s ease;
+}
+
+.modal-overlay.hidden-modal {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.modal-content {
+    background: var(--bg-color);
+    padding: 30px;
+    border-radius: 20px;
+    text-align: center;
+    width: 80%;
+    transform: scale(1);
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+}
+
+.hidden-modal .modal-content {
+    transform: scale(0.8);
+}
+
+.modal-content h2 {
+    color: var(--text-main);
+    margin-bottom: 10px;
+    font-size: 1.4rem;
+}
+
+.modal-content p {
+    color: var(--text-light);
+    margin-bottom: 25px;
+    font-size: 1.1rem;
+}
+
+/* Confetti Container */
+#confetti-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.confetti {
+    position: absolute;
+    top: -20px;
+    width: 15px;
+    height: 15px;
+    opacity: 0.8;
+    animation: fall linear forwards;
+}
+
+/* Animations */
+@keyframes spin { 100% { transform: rotate(360deg); } }
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+}
+@keyframes float-alt {
+    0% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-15px) rotate(2deg); }
+    100% { transform: translateY(0px) rotate(0deg); }
+}
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+@keyframes bounceIn {
+    0% { opacity: 0; transform: scale(0.8); }
+    60% { opacity: 1; transform: scale(1.05); }
+    100% { opacity: 1; transform: scale(1); }
+}
+@keyframes popIn {
+    0% { opacity: 0; transform: scale(0.9); }
+    100% { opacity: 1; transform: scale(1); }
+}
+@keyframes fall {
+    to { transform: translateY(110vh) rotate(360deg); }
+}
+
+/* Animation Classes */
+.float-animation { animation: float 4s ease-in-out infinite; }
+.float-animation-alt { animation: float-alt 5s ease-in-out infinite; }
+.fade-in-up { animation: fadeInUp 1s ease forwards; }
+.slide-down { animation: slideDown 1s ease forwards; }
+.bounce-in { animation: bounceIn 1s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; }
+.pop-in { animation: popIn 0.8s ease forwards; }
+.fade-in-delayed {
+    opacity: 0;
+    animation: fadeInUp 1s ease forwards;
+    animation-delay: 2s; /* Will be overridden by JS sometimes */
+}

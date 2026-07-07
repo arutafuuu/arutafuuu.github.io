@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Happy Birthday Mayyy ❤️</title>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Audio Player -->
+        <audio id="bgMusic" loop>
+            <source src="happy-birthday-background.mp3" type="audio/mpeg">
+        </audio>
+
+        <!-- Global Mute/Unmute Button -->
+        <button id="muteToggle" class="mute-btn hidden">
+            <svg id="icon-unmute" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-volume-2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
+            <svg id="icon-mute" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-volume-x hidden"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><line x1="23" y1="1" x2="1" y2="23"></line><line x1="9" y1="9" x2="15" y2="15"></line><line x1="15" y1="9" x2="9" y2="15"></line></svg>
+        </button>
+
+        <!-- Scene 1: The Surprise -->
+        <section id="scene1" class="scene active">
+            <div class="scene-content flex-center">
+                <h1 class="main-text text-center fade-in-up">Hai Mayyy, ada sesuatu yang mau altap kasi lihat ke mayaaa</h1>
+                <div class="image-wrapper float-animation">
+                    <img src="Gemini_Generated_Image_1.png" alt="Sticker 1" class="sticker-img">
+                </div>
+                <button id="btn-start" class="btn primary-btn bounce-in">Klik di Sini ❤️</button>
+            </div>
+        </section>
+
+        <!-- Scene 2: The Melody -->
+        <section id="scene2" class="scene hidden-scene">
+            <div class="scene-content">
+                <div class="music-widget slide-down">
+                    <div class="vinyl">
+                        <div class="vinyl-inner"></div>
+                    </div>
+                    <div class="track-info">
+                        <p class="track-name">Happy Birthday</p>
+                        <p class="track-artist">Playing now...</p>
+                    </div>
+                </div>
+                
+                <div class="image-wrapper float-animation-alt">
+                    <img src="Gemini_Generated_Image_2.png" alt="Sticker 2" class="sticker-img">
+                </div>
+
+                <div class="lyric-container box-card">
+                    <p id="scene2-text" class="lyric-text"></p>
+                </div>
+
+                <button id="btn-next-1" class="btn secondary-btn fade-in-delayed">Lanjut ✨</button>
+            </div>
+        </section>
+
+        <!-- Scene 3: The Heartfelt Wishes -->
+        <section id="scene3" class="scene hidden-scene">
+            <div class="scene-content">
+                <div class="image-wrapper float-animation">
+                    <img src="Gemini_Generated_Image_3.png" alt="Sticker 3" class="sticker-img">
+                </div>
+
+                <div class="letter-container box-card">
+                    <p id="scene3-text" class="letter-text"></p>
+                </div>
+
+                <button id="btn-next-2" class="btn secondary-btn fade-in-delayed">Terakhir... 🎁</button>
+            </div>
+        </section>
+
+        <!-- Scene 4: The Virtual Hug -->
+        <section id="scene4" class="scene hidden-scene">
+            <div id="confetti-container"></div>
+            <div class="scene-content flex-center">
+                <div class="image-wrapper float-animation-alt">
+                    <img src="Gemini_Generated_Image_4.png" alt="Sticker 4" class="sticker-img">
+                </div>
+
+                <h1 class="main-text text-center highlight-text pop-in">Sekali lagi, selamat ulang tahun yaaa sayanggg! Semoga hari-hari maya happy selaluuu. ❤️</h1>
+
+                <button id="btn-easter-egg" class="btn ghost-btn fade-in-delayed">Maya senyum-senyum nda nih???</button>
+            </div>
+        </section>
+
+        <!-- Modal -->
+        <div id="modal" class="modal-overlay hidden-modal">
+            <div class="modal-content">
+                <h2>Awokawok, ketahuan mayaaaaa!</h2>
+                <p>I love you! 🥰</p>
+                <button id="close-modal" class="btn primary-btn">Tutup ❤️</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
